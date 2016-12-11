@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<node name='EndUnknown'>
+    <mappinglist>
+        <alternative name='Make it hot'/>
+        <alternative name='Make it cold'/>
+    </mappinglist>
+</node>

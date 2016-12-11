@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<node name='Start'>
+    <mappinglist>
+        <alternative name='Decrease temperature' mapsTo='Decrease'/>
+        <alternative name='Increase temperature' mapsTo='Increase'/>
+        <alternative name='Unknown' mapsTo='Unknown'/>
+    </mappinglist>
+    <childrennodes>
+        <node name='Decrease'>
+            <alternative name='Decrease by 1 degree'/>
+            <alternative name='Decrease by 5 degrees'/>
+        </node>
+        <node name='Increase'>
+            <alternative name='Increase by 1 degree'/>
+            <alternative name='Increase by 5 degrees'/>
+        </node>
+        <node name='Unknown'>
+            <xmlFile name='PROCESSUNKNOWN.XML' nodeName='EndUnknown'/>
+        </node>
+    </childrennodes>
+</node>

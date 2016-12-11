@@ -1,0 +1,17 @@
+{
+  "require": {
+    "slim/slim": "^2.6",
+    "illuminate/database": "^5.1",
+    "respect/validation": "*",
+    "rmccue/requests": ">=1.0",
+    "symfony/var-dumper": "v2.7.4",
+    "symfony/console": "~2.6",
+    "philo/laravel-blade": "*",
+    "elliottb/phpgraphlib": "dev-3.x-dev"
+  },
+  "autoload": {
+    "classmap": [
+      "server/core"
+    ]
+  }
+}

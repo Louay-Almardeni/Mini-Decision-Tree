@@ -1,0 +1,81 @@
+.navbar {
+    background-color: #3E8AC5;
+    border-color: #3E8AC5;
+}
+
+.navbar-brand {
+    padding: 0;
+    margin: 15px;
+}
+
+body {
+    padding-top: 100px;
+}
+
+.panel {
+    margin: 0 174px 20px;
+    width: 370px;
+}
+
+#main-panel button {
+    width: 40%;
+    margin: 0 4%;
+}
+
+/*----- Player -----*/
+li, i {
+    cursor: pointer;
+}
+
+.selected {
+    color: blue;
+}
+
+/*----- Builder -----*/
+/*#mapping-list > div, #children-nodes > div {*/
+/*border: 1px solid #ddd;*/
+/*padding: 10px 10px 0 10px;*/
+/*margin-bottom: 10px;*/
+/*}*/
+
+#builder .row {
+    margin: 0 0 10px 0;
+}
+
+#builder label {
+    width: 30%;
+}
+
+#builder input {
+    width: 60%;
+}
+
+i {
+    float: right;
+}
+
+#error{
+    margin-left: 174px;
+    color: red;
+}
+
+#alternatives-panel, #builder-panel {
+    margin: 0 0 0 174px;
+    float: left;
+}
+
+#children-nodes-panel {
+    margin: 0 0 0 50px;
+    float: left;
+}
+
+#generate-xml {
+    margin-left: 50px;
+    width: 125px;
+}
+
+textarea {
+    margin-left: 190px;
+    width: 788px;
+    height: 200px;
+}
