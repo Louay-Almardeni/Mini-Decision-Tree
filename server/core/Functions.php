@@ -1,5 +1,10 @@
 <?php namespace knowledgeValues\test\Core\F;
 
+/**
+ * @param array
+ *
+ * @return true if associative / false if not
+ */
 function is_assoc($arr)
 {
     if (!is_array($arr)) {
@@ -8,11 +13,23 @@ function is_assoc($arr)
     return array_keys($arr) !== range(0, count($arr) - 1);
 }
 
+/**
+ * @param string $field
+ * @param \stdClass|array|object $objarray
+ *
+ * @return true if exist / null if not
+ */
 function val($field, $objarray)
 {
     return is_null($field) ? null : @(is_array($objarray) ? $objarray[$field] : $objarray->$field);
 }
 
+/**
+ * @param $path
+ * @param \stdClass|array|object $value
+ *
+ * @return true if / or null if not
+ */
 function nav($path, $value)
 {
     if (empty($value)) {
@@ -33,75 +50,4 @@ function nav($path, $value)
         }
     }
     return $value;
-}
-
-function array2xml(array $array)
-{
-    $doc = create_doc();
-    parse($array, $doc, 'root');
-    return docxml($doc);
-}
-
-function parse(array $array, $parent, $parent_key)
-{
-    if (!is_assoc($array)) {
-        foreach ($array as $key => $value) {
-            $child = create_child($parent, $parent_key);
-            parse($value, $child, $key);
-        }
-    } else {
-        foreach ($array as $key => $value) {
-            if (!is_assoc($value)) {
-                parse($value, $parent, $key);
-            } else {
-                $child = create_child($parent, $key);
-                if (is_array($value)) {
-                    parse($value, $child, $key);
-                } elseif ($value) {
-                    create_text($child, $value);
-                } else {
-                    //do nothing
-                }
-            }
-        }
-    }
-}
-
-//function is_non_assoc($arr)
-//{
-//    return is_array($arr) && !(array_keys($arr) !== range(0, count($arr) - 1));
-//}
-
-function create_doc()
-{
-    $doc = new \DOMDocument('1.0', 'utf-8');
-    $doc->xmlStandalone = true;
-    $doc->formatOutput = true;
-    return $doc;
-}
-
-function docxml($doc)
-{
-    $doc->normalizeDocument();
-    $xml = $doc->saveXML();
-    return $xml;
-}
-
-function create_child($parent, $name)
-{
-    $elm = doc($parent)->createElement($name);
-    $parent->appendChild($elm);
-    return $elm;
-}
-
-function create_text($parent, $value)
-{
-    $elm = doc($parent)->createTextNode($value);
-    $parent->appendChild($elm);
-    return $elm;
-}
-
-function doc($elm)
-{
-    return $elm->ownerDocument ? $elm->ownerDocument : $elm;
 }

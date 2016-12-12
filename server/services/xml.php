@@ -17,7 +17,7 @@ function getTree($file_name)
 {
     $xml = simplexml_load_file('XML_files/' . $file_name);
     $data = json_decode(json_encode($xml), TRUE);
-
+    
     return [
         'alternatives' => getAlternatives(val('mappinglist', $data)),
         'children_nodes' => getChildrenNodes($data)

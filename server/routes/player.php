@@ -16,5 +16,5 @@ $app->get('/player/load-file', function () use ($app) {
 
     $app->response()->header('Content-Type', 'application/json;charset=UTF-8');
     echo json_encode(xml\mapping($data));
-
+    
 })->name('loadFile');

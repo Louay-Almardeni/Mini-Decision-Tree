@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<node name='TryMyTree'>
+    <mappinglist>
+        <alternative name='Invite Louay for 2nd interview :)' mapsTo='Interview'/>
+        <alternative name='Send him apologies via email :(' mapsTo='Email'/>
+    </mappinglist>
+    <childrennodes>
+        <node name='Interview'>
+            <alternative name='Cool,  You have chosen the right option :D'/>
+        </node>
+        <node name='Email'>
+            <alternative name='Think twice, anf invite Louay for 2nd interview :D'/>
+        </node>
+    </childrennodes>
+</node>
