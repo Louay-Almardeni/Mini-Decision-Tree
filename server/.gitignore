@@ -1,0 +1,9 @@
+.idea
+.DS_Store
+vendor
+cache
+composer.lock
+server/resources/bower
+*.swp
+auth.json
+switchdb

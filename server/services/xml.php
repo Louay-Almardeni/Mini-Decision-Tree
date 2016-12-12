@@ -4,6 +4,7 @@ use function knowledgeValues\test\Core\F\val;
 use function knowledgeValues\test\Core\F\nav;
 use function knowledgeValues\test\Core\F\is_assoc;
 
+//Make a list of all XML files in the XML_files folder
 function getFileNames()
 {
     return array_map(function ($fn) {
@@ -11,23 +12,7 @@ function getFileNames()
     }, glob(XML_FILES_FOLDER_NAME . '/*.XML'));
 }
 
-function aggregation($array)
-{
-    $res = [];
-
-    foreach (val('alternatives', $array) as $alt) {
-        if ($mapsTo = val('mapsTo', $alt)) {
-            $sub = nav('children_nodes -> ' . $mapsTo, $array);
-            $alt['sub'] = is_assoc($sub)
-                ? val('alternatives', $sub)
-                : $sub;
-        }
-        $res[] = $alt;
-    }
-
-    return $res;
-}
-
+//Read XML file and return a structured array
 function getTree($file_name)
 {
     $xml = simplexml_load_file('XML_files/' . $file_name);
@@ -41,9 +26,14 @@ function getTree($file_name)
 
 function getAlternatives($array)
 {
+    $alternatives = val('alternative', $array);
+    if (is_assoc($alternatives)) {
+        $alternatives = [$alternatives];
+    }
+
     return array_map(function ($a) {
         return mapAlternative(val('@attributes', $a));
-    }, val('alternative', $array));
+    }, $alternatives);
 }
 
 function mapAlternative($data)
@@ -60,6 +50,10 @@ function getChildrenNodes($array)
         return null;
     }
 
+    if (is_assoc($node)) {
+        $node = [$node];
+    }
+
     $keys = array_map(function ($n) {
         return nav('@attributes -> name', $n);
     }, $node);
@@ -73,3 +67,20 @@ function getChildrenNodes($array)
     return array_combine($keys, $values);
 }
 
+
+//Map array for rout to ease creating sections
+function mapping($array)
+{
+    $res = [];
+
+    foreach (val('alternatives', $array) as $alt) {
+        if ($mapsTo = val('mapsTo', $alt)) {
+            $sub = nav('children_nodes -> ' . $mapsTo, $array);
+            $alt['sub'] = is_assoc($sub)
+                ? val('alternatives', $sub)
+                : $sub;
+        }
+        $res[] = $alt;
+    }
+    return $res;
+}

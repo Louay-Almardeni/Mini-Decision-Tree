@@ -6,7 +6,6 @@ $app->get('/builder', function () use ($app) {
     echo $app->blade->render('builder', ['error' => null, 'xml' => null]);
 });
 
-
 $app->post('/builder', function () use ($app) {
 
     $params = $app->request()->params();

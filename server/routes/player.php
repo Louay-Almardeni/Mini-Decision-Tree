@@ -15,6 +15,6 @@ $app->get('/player/load-file', function () use ($app) {
     $data = xml\getTree($file_name);
 
     $app->response()->header('Content-Type', 'application/json;charset=UTF-8');
-    echo json_encode(xml\aggregation($data));
+    echo json_encode(xml\mapping($data));
 
 })->name('loadFile');

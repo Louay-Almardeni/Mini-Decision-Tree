@@ -63,7 +63,6 @@
     <script>
         preventDoubleSubmission();
         var alternatives_count = 1;
-        {{--        var saveFileUrl = '{{$app->urlFor('createFile')}}';--}}
     </script>
 @endsection
 
